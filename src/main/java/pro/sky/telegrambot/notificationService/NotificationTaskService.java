@@ -11,10 +11,12 @@ public class NotificationTaskService {
 
     public NotificationTaskService(TelegramBot telegramBot) {
         this.telegramBot = telegramBot;
+
     }
 
     public synchronized void sendMsg(Long chatId, String textMessage) {
         SendMessage sendMessage = new SendMessage(chatId, textMessage);
         SendResponse response = telegramBot.execute(sendMessage);
     }
+
 }
