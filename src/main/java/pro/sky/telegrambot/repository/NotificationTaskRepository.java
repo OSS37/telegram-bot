@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface NotificationTaskRepository extends JpaRepository<NotificationTask, Long> {
-    List <NotificationTask> findAllBySending_time (LocalDateTime currentTime);
+    List <NotificationTask> findAllBysendingTime (LocalDateTime currentTime);
 
 
 }

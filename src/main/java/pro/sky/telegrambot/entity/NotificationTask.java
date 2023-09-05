@@ -14,9 +14,9 @@ public class NotificationTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;
-    private long chat_id;
-    private String text_message;
-    private LocalDateTime sending_time;
+    private long chatId;
+    private String textMessage;
+    private LocalDateTime sendingTime;
 
 
     public long getId() {
@@ -27,28 +27,28 @@ public class NotificationTask {
         this.id = id;
     }
 
-    public long getChat_id() {
-        return chat_id;
+    public long getchatId() {
+        return chatId;
     }
 
-    public void setChat_id(long chat_id) {
-        this.chat_id = chat_id;
+    public void setchatId(long chatId) {
+        this.chatId = chatId;
     }
 
-    public String getText_message() {
-        return text_message;
+    public String gettextMessage() {
+        return textMessage;
     }
 
-    public void setText_message(String text_message) {
-        this.text_message = text_message;
+    public void settextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
 
-    public LocalDateTime getSending_time() {
-        return sending_time;
+    public LocalDateTime getsendingTime() {
+        return sendingTime;
     }
 
-    public void setSending_time(LocalDateTime sending_time) {
-        this.sending_time = sending_time;
+    public void setsendingTime(LocalDateTime sendingTime) {
+        this.sendingTime = sendingTime;
     }
 
     @Override
@@ -56,21 +56,21 @@ public class NotificationTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationTask that = (NotificationTask) o;
-        return id == that.id && chat_id == that.chat_id && Objects.equals(text_message, that.text_message) && Objects.equals(sending_time, that.sending_time);
+        return id == that.id && chatId == that.chatId && Objects.equals(textMessage, that.textMessage) && Objects.equals(sendingTime, that.sendingTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chat_id, text_message, sending_time);
+        return Objects.hash(id, chatId, textMessage, sendingTime);
     }
 
     @Override
     public String toString() {
         return "NotificationTask{" +
                 "id=" + id +
-                ", chat_id=" + chat_id +
-                ", text_message='" + text_message + '\'' +
-                ", sending_time=" + sending_time +
+                ", chatId=" + chatId +
+                ", textMessage='" + textMessage + '\'' +
+                ", sendingTime=" + sendingTime +
                 '}';
     }
 }
