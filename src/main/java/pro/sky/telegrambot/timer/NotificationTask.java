@@ -20,17 +20,17 @@ public class NotificationTask {
         this.notificationTaskRepository = notificationTaskRepository;
         this.notificationTaskService = notificationTaskService;
     }
-/*
+
     @Scheduled(cron = "0 0/1 * * * *")
     @Transactional(readOnly = true)
     public void task () {
-        notificationTaskRepository.findAllBySending_time(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)
+        notificationTaskRepository.findAllBysendingTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)
         ).forEach(notificationTask -> {
             notificationTaskService.sendMsg(
-                    notificationTask.getChat_id(),
-                    "Вы просили напомнить вам об этом событии:" + notificationTask.getText_message());
+                    notificationTask.getchatId(),
+                    "Вы просили напомнить вам об этом событии:" + notificationTask.gettextMessage());
         });
 
-    }*/
+    }
 }
 

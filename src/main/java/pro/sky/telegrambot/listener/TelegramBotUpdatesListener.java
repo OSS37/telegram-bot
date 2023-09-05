@@ -43,44 +43,32 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
             logger.info("Processing update: {}", update);
 
-            Long chat_id = update.message().chat().id();
-            String text_message = update.message().text();
+            Long chatId = update.message().chat().id();
+            String textMessage = update.message().text();
             NotificationTask newEntry = new NotificationTask();
             Pattern pattern = Pattern.compile("([0-9\\.\\:\\s]{16})(\\s)([\\W+]+)");
 
-            if (text_message.contains("/start")) {
-                notificationTaskService.sendMsg(chat_id, "Привет, я бот-напоминание. Для корректной работы мне необходимо писать напоминания в формате: 01.01.2022 20:00 Сделать домашнюю работу");
+            if (textMessage.contains("/start")) {
+                notificationTaskService.sendMsg(chatId, "Привет, я бот-напоминание. Для корректной работы мне необходимо писать напоминания в формате: 01.01.2022 20:00 Сделать домашнюю работу");
             } else {
-                Matcher matcher = pattern.matcher(text_message);
+                Matcher matcher = pattern.matcher(textMessage);
                 if (matcher.matches()) {
                     String date = matcher.group(1);
                     String item = matcher.group(3);
                     LocalDateTime dateToLocalDateTime = LocalDateTime.parse(date,
                             DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
 
-                    newEntry.setText_message(item);
-                    newEntry.setSending_time(dateToLocalDateTime);
-                    newEntry.setChat_id(chat_id);
-                    System.out.println(chat_id);
+                    newEntry.settextMessage(item);
+                    newEntry.setsendingTime(dateToLocalDateTime);
+                    newEntry.setchatId(chatId);
+                    System.out.println(chatId);
 
                     notificationTaskRepository.save(newEntry);
                 } else {
-                    notificationTaskService.sendMsg(chat_id, "Неверный формат. Пример: 01.01.2022 20:00 Сделать домашнюю работу");
+                    notificationTaskService.sendMsg(chatId, "Неверный формат. Пример: 01.01.2022 20:00 Сделать домашнюю работу");
                 }
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-
-/*    public synchronized void sendMsg(Long chatId, String textMessage) {
-        SendMessage sendMessage = new SendMessage(chatId, textMessage);
-        SendResponse response = telegramBot.execute(sendMessage);
-    }*/
-
-/*    @Bean
-
-
-    }*/
-
-
 }
